@@ -1,6 +1,6 @@
 
 const express = require('express');
-const tourController = require('./../controllers/userControllers')
+const userController = require('./../controllers/userControllers')
 const authController = require('./../controllers/authController')
 
 
@@ -9,15 +9,20 @@ const authController = require('./../controllers/authController')
   
 
   router.post('/signup', authController.signup);
+  router.post('/login', authController.login);
+
+
+  router.post('/forgotPassword', authController.forgotPassword);
+  router.patch('/resetPassword/:token', authController.resetPassword);
 
   router.route('/')
-  .get(tourController.getAllUsers)
-  .post(tourController.createUser)
+  .get(userController.getAllUsers)
+  .post(userController.createUser)
  
   router.route('/:id')
-  .get(tourController.getUser)
-  .patch(tourController.updateUser)
-  .delete(tourController.deleteUser)
+  .get(userController.getUser)
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser)
 
 
   module.exports =  router;
